@@ -1600,8 +1600,8 @@ class IB:
         async def connect():
             self.wrapper.clientId = clientId
             await self.client.connectAsync(host, port, clientId, timeout)
-            if not readonly and self.client.serverVersion() >= 150:
-                await self.reqCompletedOrdersAsync(False)
+            # if not readonly and self.client.serverVersion() >= 150: #todo remove on 2020-03-16 due to disconnect bug
+            #     await self.reqCompletedOrdersAsync(False)
             accounts = self.client.getAccounts()
             await asyncio.gather(
                 self.reqAccountUpdatesAsync(account or accounts[0]),
